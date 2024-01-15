@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+ <html>
+<head>
+</head>
+<body>
+    <h1>Level Count</h1>
+    <form>
+        層數:<input type="number" name="num" id="level-input">
+        <input type="button" id="draw-apex-btn" value="確定">
+    </form>
+    <div style="border: 5px solid white ;">
+        <table id="result-table" bgcolor="white" cellpadding="7" border="0">
+
+
+        </table>
+    </div>
+    <div id="result"></div>
+<script>
+    function draw_apex(level, color1, color2) {
+        var star= '*';
+        var star2= '*';
+        var sps= '&nbsp;';
+        var spe= '&nbsp;';
+        var spe2= '&nbsp;';
+        // var star_times= 1;
+        // var star2_times= 1;
+        // var sps_times= 19;
+        // var spe_times= 1;
+        // var spe2_times= 19;
+        // var level= 50;
+        var result="";
+        for(let i=1;i<=level;i++) {
+            result = result + "<tr>";
+            for(let j=0;j<level-i;j++){
+                result = result + "<td bgcolor=\"" + color1 + "\"> </td>";
+                // result= result+sps;
+            }
+            result = result + "<td bgcolor=\"" + color2 + "\"> </td>";
+
+            // for(let j=0;j<(star_times);j++){
+            //     result = result + "<td bgcolor=\"" + color2 + "\"> </td>";
+            //     // result= result+star;
+            // }
+            for(let j=0;j<((i-1)*2)-1;j++){
+                result = result + "<td bgcolor=\"" + color1 + "\"> </td>";
+                // result= result+spe;
+            }
+            if (i > 1) {
+                result = result + "<td bgcolor=\"" + color2 + "\"> </td>";
+
+                // for(let j=0;j<star2_times;j++){
+                //     result = result + "<td bgcolor=\"" + color2 + "\"> </td>";
+                //     // result= result+star2;
+                // }
+            }
+
+            for(let j=0;j<level-i;j++){
+                result = result + "<td bgcolor=\"" + color1 + "\"> </td>";
+
+                // result= result+sps;
+            }
+            // result=result +"<br>";
+            // sps_times--;
+            // spe_times++;
+            // star_times++;
+            // star2_times++;
+            // spe_times++;
+            // spe_times++;
+            // star_times++;
+            result = result + "</tr>";
+        }
+        document.getElementById("result-table").innerHTML = result;
+        // alert(result);
+    }
+    
+    document.getElementById("draw-apex-btn").addEventListener("click", (event) => {
+        let level = document.getElementById("level-input").value;
+        if (level >=500){
+            alert('forbidden')
+        } else{
+            draw_apex(level, 'blue', 'yellow');
+        }
+    });
+</script>
+</body>
+ </html>
